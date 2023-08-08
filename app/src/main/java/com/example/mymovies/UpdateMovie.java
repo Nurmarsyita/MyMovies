@@ -75,15 +75,24 @@ public class UpdateMovie extends AppCompatActivity {
                 myBuilder.setMessage("Are you sure you want to delete the movie " + data.getTitle()+"?");
                 myBuilder.setCancelable(true);
 
-                myBuilder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                myBuilder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+
+                // Configure the 'negative' button
+                myBuilder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
                         DBHelper dbh = new DBHelper(UpdateMovie.this);
                         dbh.deleteMovie(data.getId());
                         finish();
+
                     }
                 });
-                myBuilder.setNeutralButton("Cancel", null);
+//                myBuilder.setNeutralButton("Delete", null);
 
                 AlertDialog myDialog = myBuilder.create();
                 myDialog.show();
@@ -101,14 +110,20 @@ public class UpdateMovie extends AppCompatActivity {
                 myBuilder.setCancelable(true);
 
                 //configure the 'positive' button
-                myBuilder.setPositiveButton("DISCARD", new DialogInterface.OnClickListener() {
+                myBuilder.setPositiveButton("Do not discard", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+
+                //configure the 'negative' button
+                myBuilder.setNegativeButton("Discard", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         finish();
                     }
                 });
-
-                myBuilder.setNegativeButton("DO NOT DISCARD", null);
 
                 AlertDialog myDialog = myBuilder.create();
                 myDialog.show();
